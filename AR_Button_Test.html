@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- we import arjs version without NFT but with marker + location based support -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <script>
+    window.onload = function () {
+
+      //declare variable for hide-button
+      let hide = false;
+      
+      //Rotation-Button - absolute
+      document
+        .querySelector(".rotate-button")
+        .addEventListener("click", function () {        
+          let box = document.querySelector('#box');
+          box.object3D.rotation.y = THREE.Math.degToRad(45);
+        });
+
+      //Position-Button - absolute
+      document        
+        .querySelector(".position-button")
+        .addEventListener("click", function () {        
+          let box = document.querySelector('#box');
+          box.setAttribute('position', {x: 0.5, y: 0, z: 0}); 
+        });
+      
+      //Color-Button
+      document        
+        .querySelector(".color-button")
+        .addEventListener("click", function () {        
+          let box = document.querySelector('#box');
+          box.setAttribute('material', 'color', 'red');
+        });
+ 
+      //Hide-Button
+      document        
+        .querySelector(".hide-button")
+        .addEventListener("click", function () {        
+          let box = document.querySelector('#box');
+
+                  
+          if (hide === true) {
+              box.setAttribute("visible",true);
+              document.querySelector('.hide-button').innerText="Hide";
+              hide = false;
+            }
+          else {
+              box.setAttribute("visible",false);
+              document.querySelector('.hide-button').innerText="Unhide";
+              hide = true;
+            }
+          });
+      
+      
+    }; 
+  </script>
+  
+  
+  
+  <style>
+    .buttons {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 5em;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 10;
+    }
+
+    .rotate-button {
+
+    }
+    
+    .position-button {
+
+    }
+    
+    .color-button {
+      
+    }
+    
+  </style>
+  <body style="margin : 0px; overflow: hidden;">
+    <div class="buttons">
+      <button class="rotate-button">Rotation</button>
+      <button class="position-button">Position</button>
+      <button class="color-button">Color</button>
+      <button class="hide-button">Hide</button>
+    </div>
+    
+    <a-scene embedded arjs>
+      <a-marker preset="hiro">       
+        
+        <a-entity
+          id = "box"
+          color = "blue"
+          position="0 0 0"
+          geometry="primitive: box; width: 1; height: 1; depth: 1"
+        ></a-entity>       
+        
+      </a-marker>
+      
+      <a-entity camera></a-entity>
+
+    </a-scene>
+      
+  </body>
+  
+</html>
