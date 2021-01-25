@@ -1,0 +1,49 @@
+<html>
+<!-- Source: https://ar-js-org.github.io/AR.js-Docs/  Marker Based Example 24.10.2020-->
+
+  <!-- A-Frame Script 1.0.4 -->
+  <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+  <!-- we import arjs version without NFT but with marker + location based support -->
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <!-- https://github.com/supermedium/superframe/tree/master/components/gltf-part -->
+  <script src="https://unpkg.com/aframe-gltf-part-component/dist/aframe-gltf-part-component.min.js"></script>
+  <head>
+      <title>AR A-Frame - Strukturmodell Glycin </title>
+  </head>
+
+  <body style="margin : 0px; overflow: hidden;">
+
+    <a-scene embedded arjs>
+
+      <a-asset-item
+        id="Glycin"
+        src="objects/Glycin.gltf"
+      ></a-asset-item>   
+
+      <!-- Marker -->
+      <a-marker preset="hiro">
+
+        <a-entity shader="standard">
+
+          <!--
+          <a-entity gltf-model="#Glycin"></a-entity>
+          -->
+
+          <a-entity 
+            gltf-part="src: #Glycin; part: Nitrogen_Atom" 
+            position="0 0 0" 
+            scale="1 1 1"
+          >
+          </a-entity>
+
+
+        </a-entity>
+
+      </a-marker>
+      
+      <!-- Camera -->
+      <a-entity camera></a-entity>
+    </a-scene>
+
+  </body>
+</html>
